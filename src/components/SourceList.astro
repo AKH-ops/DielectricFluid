@@ -1,0 +1,17 @@
+---
+import { SOURCES } from "../lib/fluids";
+interface Props { ids: string[]; title?: string; id?: string }
+const { ids, title = "Sources", id = "sources" } = Astro.props;
+const list = ids.map((k) => ({ k, s: SOURCES[k] })).filter((x) => x.s);
+---
+<section class="sources" id={id} aria-labelledby={`${id}-h`} style="padding-block:2rem 0">
+  <h2 id={`${id}-h`} style="font-size:1.15rem;margin-bottom:.8rem">{title}</h2>
+  <ol>
+    {list.map(({ k, s }) => (
+      <li id={`src-${k}`}>
+        <a href={s.url} rel="noopener" target="_blank">{s.title}</a>
+        <span class="meta"> — {s.publisher}; {s.kind}{s.host ? `; ${s.host}` : ""}. Checked {s.checked}.</span>
+      </li>
+    ))}
+  </ol>
+</section>

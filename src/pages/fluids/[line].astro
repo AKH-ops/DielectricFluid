@@ -1,0 +1,167 @@
+---
+import Base from "../../layouts/Base.astro";
+import Crumbs from "../../components/Crumbs.astro";
+import Chips from "../../components/Chips.astro";
+import SourceList from "../../components/SourceList.astro";
+import { PAGED, PROPS, FAMILY, APPS, PFAS, STATUS, PHASE, MAKERS, SOURCES, fmt, srcOf, pageOf, citeUrl, lineSourceIds, nearestByBoil, ROWS, type Line } from "../../lib/fluids";
+import { SITE } from "../../lib/site";
+
+export function getStaticPaths() {
+  return PAGED.map((l) => ({ params: { line: l.line }, props: { l } }));
+}
+const { l } = Astro.props as { l: Line };
+const maker = MAKERS[l.maker];
+const multi = l.grades.length > 1;
+const keys = Object.keys(PROPS).filter((k) => l.grades.some((g) => g.props[k]));
+const pf = PFAS[l.pfas.status];
+const plain = l.name.replace(/[™®]/g, "");
+const g0 = l.grades[0];
+
+// Discontinued: screen replacements by boiling point, and list PFAS-free single-phase options separately.
+const bp = g0.props.boiling_point?.v;
+const near = l.status === "discontinued" && bp !== undefined ? nearestByBoil(bp, [l.line], 5) : [];
+const freeOpts = l.status === "discontinued" ? ROWS.filter((r) => (r.line.pfas.status === "free" || r.line.pfas.status === "nonfluorinated") && r.line.status === "active" && r.props.flash_point?.v !== undefined).slice(0, 6) : [];
+
+const title = l.status === "discontinued" ? `${plain}: datasheet values and replacement candidates` : multi ? `${plain} grades: properties cited to the datasheet` : `${plain}: properties cited to the datasheet`;
+const desc = `${plain} by ${maker.short}: ${keys.slice(0, 5).map((k) => PROPS[k].label.toLowerCase()).join(", ")} and more, each value linked to the maker's document. ${pf.label}. ${STATUS[l.status].label}.`;
+const jsonld = l.grades.map((g) => ({
+  "@context": "https://schema.org",
+  "@type": "Product",
+  name: g.name,
+  brand: { "@type": "Brand", name: maker.short },
+  manufacturer: { "@type": "Organization", name: maker.name, url: maker.url },
+  category: `Dielectric fluid — ${FAMILY[l.family]?.label}`,
+  url: `${SITE.url}/fluids/${l.line}/${multi ? "#" + g.slug : ""}`,
+  additionalProperty: Object.entries(g.props).filter(([, p]) => p.v !== undefined).map(([k, p]) => ({ "@type": "PropertyValue", name: PROPS[k].label, value: p.v, unitText: PROPS[k].unit || undefined, description: [p.q && `qualifier ${p.q}`, p.at && `at ${p.at}`, p.method].filter(Boolean).join("; ") || undefined })),
+}));
+const deskHref = `/desk/?fluid=${encodeURIComponent(l.line)}&source=register`;
+---
+<Base title={title} description={desc} type="article" jsonld={jsonld}>
+  <div class="page-head paper">
+    <div class="wrap">
+      <Crumbs items={[{ href: "/fluids/", label: "Register" }, { label: plain }]} />
+      <h1>{l.name}</h1>
+      <div style="display:flex;flex-wrap:wrap;gap:.5rem;align-items:center;margin-bottom:1rem">
+        <Chips line={l} />
+        <span class="chip chip-plain">{FAMILY[l.family]?.label}</span>
+        {l.applications.map((a) => <a class="chip chip-plain" style="text-decoration:none" href={`/fluids/?app=${a}`}>{APPS[a]}</a>)}
+      </div>
+      <p class="lede">{l.summary}</p>
+      <p class="byline"><span>Maker: <a href={maker.url} rel="noopener" target="_blank">{maker.name}</a></span><span>Source: <a href={SOURCES[l.source].url} rel="noopener" target="_blank">{SOURCES[l.source].publisher} document</a>, checked {SOURCES[l.source].checked}</span></p>
+    </div>
+  </div>
+
+  <section style="padding-top:2.25rem">
+    <div class="wrap">
+      {!multi ? (
+        <div class="spec">
+          {keys.map((k) => {
+            const p = g0.props[k];
+            const page = pageOf(l, p);
+            return (
+              <div>
+                <div class="k">{p.label ?? PROPS[k].label}</div>
+                <div class="v">{fmt(p)}{p.none ? "" : PROPS[k].unit ? <small style="font-size:.7em;color:var(--muted)"> {PROPS[k].unit}</small> : ""}<sup class="cite"><a href={citeUrl(p.src || l.source, page)} rel="noopener" target="_blank" aria-label={`Source for ${PROPS[k].label}, page ${page}`}>p.{page}</a></sup></div>
+                <div class="c">{[p.at && `at ${p.at}`, p.method, p.pub && `printed: ${p.pub}`].filter(Boolean).join(" · ") || " "}</div>
+              </div>
+            );
+          })}
+        </div>
+      ) : (
+        <div class="table-scroll">
+          <table class="data">
+            <thead><tr><th scope="col">Grade</th>{keys.map((k) => <th scope="col" class="n" title={PROPS[k].label}>{PROPS[k].short}{PROPS[k].unit ? ` ${PROPS[k].unit}` : ""}</th>)}</tr></thead>
+            <tbody>
+              {l.grades.map((g) => (
+                <tr id={g.slug}>
+                  <td class="name"><b>{g.name}</b>{g.use && <small>{g.use}</small>}</td>
+                  {keys.map((k) => {
+                    const p = g.props[k];
+                    if (!p) return <td class="n"><span class="empty">—</span></td>;
+                    const page = pageOf(l, p);
+                    return <td class="n" title={[PROPS[k].label, p.at && `at ${p.at}`, p.method, p.pub && `printed: ${p.pub}`, `p.${page}`].filter(Boolean).join(" · ")}>{fmt(p)}<sup class="cite"><a href={citeUrl(p.src || l.source, page)} rel="noopener" target="_blank" aria-label={`Source, page ${page}`}>↗</a></sup></td>;
+                  })}
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      )}
+      {multi && (() => {
+        const conds = keys.map((k) => { const p = g0.props[k]; const c = [p?.at && `at ${p.at}`, p?.method, p?.pub && `printed ${p.pub}`].filter(Boolean).join(", "); return c ? `${PROPS[k].label}: ${c}` : ""; }).filter(Boolean);
+        return conds.length ? <p class="small muted" style="margin-top:.8rem">Conditions (first grade; others match unless the tooltip says otherwise): {conds.join(" · ")}.</p> : null;
+      })()}
+
+      <div class="article-grid" style="padding-top:2.5rem">
+        <div class="prose">
+          <h2 style="margin-top:0">PFAS status: {pf.label}</h2>
+          <div class={`callout${l.pfas.status === "pfas" ? " warn" : ""}`}>
+            <p><b>{pf.long}.</b></p>
+            <p style="margin-top:.5rem">From the maker's document (p.{l.pfas.page}): <q>{l.pfas.quote}</q> <sup class="cite"><a href={citeUrl(l.source, l.pfas.page)} rel="noopener" target="_blank">↗</a></sup></p>
+            {l.pfas.note && <p style="margin-top:.5rem">{l.pfas.note}{l.pfas.basis === "structure" && <> <a href="/pfas/#definition">How we apply the OECD definition</a>.</>}</p>}
+          </div>
+
+          {l.status === "discontinued" && (
+            <>
+              <h2>Status: discontinued</h2>
+              <p>{plain} is on Appendix 1, "List of Impacted Products", of 3M's 20 December 2022 customer letter announcing its exit from PFAS manufacturing by the end of 2025. <sup class="cite"><a href={citeUrl("3m-exit-letter", 2)} rel="noopener" target="_blank">↗</a></sup> Existing stock may still circulate through distributors. Plan the replacement now rather than when supply runs out.</p>
+
+              {near.length > 0 && (
+                <>
+                  <h2>Closest boiling points in the register</h2>
+                  <p>Boiling point is the first screen for two-phase and vapour-phase use. It is not the only one: check dielectric strength, material compatibility and your system's operating range against each datasheet, and expect to requalify any change of chemistry.</p>
+                  {near.map(({ r, d }) => (
+                    <div class="match">
+                      <div>
+                        <a href={r.href}><b>{r.name}</b></a> <span class="muted small">· {MAKERS[r.line.maker].short}</span>
+                        <div class="meta"><Chips line={r.line} phase={false} /><span class="chip chip-plain">{FAMILY[r.line.family]?.label}</span></div>
+                      </div>
+                      <div class="delta">{fmt(r.props.boiling_point)} °C<br /><span class="muted">{d === 0 ? "same" : `${d > 0 ? "+" : "−"}${Math.abs(Math.round(d * 10) / 10)} °C`}</span></div>
+                    </div>
+                  ))}
+                  <p class="small muted">Fluorinated candidates may themselves be PFAS. A drop-in that fixes supply can bring back the regulatory question. See the <a href="/pfas/">PFAS tracker</a>.</p>
+                </>
+              )}
+              {freeOpts.length > 0 && (
+                <>
+                  <h2>PFAS-free options (a change of architecture)</h2>
+                  <p>The PFAS-free fluids in the register are single-phase hydrocarbons and esters. They do not boil in use, so moving to one usually means a pumped single-phase design rather than a drop-in. See <a href="/single-vs-two-phase/">single-phase vs two-phase</a>.</p>
+                  <ul>{freeOpts.map((r) => <li><a href={r.href}>{r.name}</a> — flash point {fmt(r.props.flash_point)} °C, {FAMILY[r.line.family]?.label.toLowerCase()}</li>)}</ul>
+                </>
+              )}
+            </>
+          )}
+
+          <h2>Before you specify it</h2>
+          <ul>
+            <li>These are the maker's <b>typical</b> values. The certificate of analysis for your batch is the binding document.</li>
+            <li>Ask the maker for a current datasheet and SDS, material-compatibility data for your seals and plastics, and any warranty terms for immersed hardware.</li>
+            <li>Compare dielectric strengths only at the same test gap and method.</li>
+          </ul>
+
+          <div class="band" style="margin-top:2.5rem">
+            <div>
+              <h2>{l.status === "discontinued" ? `Replacing ${plain}?` : `Sourcing ${plain}?`}</h2>
+              <p>Tell the desk your volume, timeline and constraints. We come back with options and quotes.</p>
+            </div>
+            <a class="btn btn-primary" href={deskHref}>Ask the desk <span class="arrow">→</span></a>
+          </div>
+
+          <SourceList ids={lineSourceIds(l)} />
+        </div>
+        <aside class="toc" aria-label="About this record">
+          <span class="eyebrow">Record</span>
+          <dl class="small" style="display:grid;gap:.6rem;margin-top:.5rem">
+            <div><dt class="muted">Maker</dt><dd>{maker.short}</dd></div>
+            <div><dt class="muted">Chemistry</dt><dd>{FAMILY[l.family]?.label}</dd></div>
+            {l.phase && <div><dt class="muted">Mode</dt><dd>{PHASE[l.phase]}</dd></div>}
+            <div><dt class="muted">Grades</dt><dd>{l.grades.length}</dd></div>
+            <div><dt class="muted">Values cited</dt><dd>{l.grades.reduce((n, g) => n + Object.keys(g.props).length, 0)}</dd></div>
+            <div><dt class="muted">Checked</dt><dd>{SOURCES[l.source].checked}</dd></div>
+          </dl>
+          <p class="small" style="margin-top:1rem"><a href="/updates/">Report an error</a></p>
+        </aside>
+      </div>
+    </div>
+  </section>
+</Base>

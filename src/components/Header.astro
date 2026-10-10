@@ -1,0 +1,39 @@
+---
+import Logo from "./Logo.astro";
+import { NAV } from "../lib/site";
+const path = Astro.url.pathname;
+const current = (href: string) => (path === href || (href !== "/" && path.startsWith(href)) ? "page" : undefined);
+---
+<header class="site-header">
+  <div class="wrap bar">
+    <a class="brand" href="/" aria-label="DielectricFluid home">
+      <Logo />
+      <span class="word">Dielectric<b>Fluid</b></span>
+    </a>
+    <nav class="nav" aria-label="Main">
+      {NAV.map((n) => <a href={n.href} aria-current={current(n.href)}>{n.label}</a>)}
+      <a class="cta" href="/desk/">Ask the desk</a>
+      <button class="theme-toggle" type="button" data-theme-toggle aria-label="Switch colour theme">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 3a9 9 0 1 0 9 9 7 7 0 0 1-9-9z" /></svg>
+      </button>
+    </nav>
+    <details class="menu">
+      <summary>Menu</summary>
+      <div class="menu-panel">
+        {NAV.map((n) => <a href={n.href}>{n.label}</a>)}
+        <a href="/desk/">Ask the desk →</a>
+        <button class="theme-toggle" type="button" data-theme-toggle aria-label="Switch colour theme" style="margin-top:.75rem">◐</button>
+      </div>
+    </details>
+  </div>
+</header>
+<script>
+  for (const b of document.querySelectorAll("[data-theme-toggle]")) {
+    b.addEventListener("click", () => {
+      const root = document.documentElement;
+      const dark = root.dataset.theme ? root.dataset.theme === "dark" : matchMedia("(prefers-color-scheme: dark)").matches;
+      root.dataset.theme = dark ? "light" : "dark";
+      try { localStorage.setItem("theme", root.dataset.theme); } catch {}
+    });
+  }
+</script>

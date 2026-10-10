@@ -1,0 +1,12 @@
+---
+import { PFAS, STATUS, PHASE, type Line } from "../lib/fluids";
+interface Props { line: Line; phase?: boolean }
+const { line, phase = true } = Astro.props;
+const pf = PFAS[line.pfas.status];
+const st = STATUS[line.status];
+---
+<span class="chips" style="display:inline-flex;flex-wrap:wrap;gap:.35rem">
+  <span class={`chip ${pf.chip}`} title={pf.long}>{pf.label}</span>
+  {line.status !== "active" && <span class={`chip ${st.chip}`}>{st.label}</span>}
+  {phase && line.phase && <span class="chip chip-plain">{PHASE[line.phase]}</span>}
+</span>

@@ -1,0 +1,33 @@
+{
+  "engineered-fluids": {
+    "name": "Engineered Fluids, Inc.",
+    "short": "Engineered Fluids",
+    "where": "Tyler, Texas, USA (manufacturing, per its datasheet)",
+    "url": "https://www.engineeredfluids.com/"
+  },
+  "syensqo": {
+    "name": "Syensqo (formerly Solvay)",
+    "short": "Syensqo",
+    "where": "Belgium (group)",
+    "url": "https://www.syensqo.com/"
+  },
+  "cargill": {
+    "name": "Cargill, Incorporated — Cargill Bioindustrial",
+    "short": "Cargill",
+    "where": "Minneapolis, Minnesota, USA (per its datasheets)",
+    "url": "https://www.cargill.com/bioindustrial"
+  },
+  "chemours": {
+    "name": "The Chemours Company",
+    "short": "Chemours",
+    "where": "USA",
+    "url": "https://www.opteon.com/"
+  },
+  "3m": {
+    "name": "3M",
+    "short": "3M",
+    "where": "St. Paul, Minnesota, USA",
+    "url": "https://www.3m.com/",
+    "note": "Announced on 20 Dec 2022 that it would exit all PFAS manufacturing by the end of 2025, including fluorinated fluids. Novec™ engineered fluids and Fluorinert™ electronic liquids are on its list of impacted products."
+  }
+}

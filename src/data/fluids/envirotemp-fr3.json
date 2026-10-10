@@ -1,0 +1,38 @@
+{
+  "line": "envirotemp-fr3",
+  "name": "Envirotemp™ FR3™",
+  "maker": "cargill",
+  "family": "natural-ester",
+  "status": "active",
+  "applications": [
+    "transformer"
+  ],
+  "source": "cargill-fr3-tds",
+  "page": 1,
+  "summary": "A bio-based natural-ester transformer fluid with flash and fire points of about 330 °C and 360 °C. Cargill states it contains no petroleum, halogens, silicones or corrosive sulfur. This record is incomplete: only the values checked so far are shown, and the full typical-property table is still being verified.",
+  "pfas": {
+    "status": "free",
+    "basis": "maker",
+    "quote": "It does not contain petroleum, halogens, silicones or corrosive sulfur.",
+    "page": 1,
+    "note": "No halogens means no fluorine, so no PFAS."
+  },
+  "published_on": null,
+  "grades": [
+    {
+      "slug": "envirotemp-fr3",
+      "name": "Envirotemp FR3",
+      "props": {
+        "flash_point": {
+          "v": 330,
+          "q": "≈",
+          "method": "COC"
+        },
+        "fire_point": {
+          "v": 360,
+          "q": "≈"
+        }
+      }
+    }
+  ]
+}

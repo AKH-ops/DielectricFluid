@@ -1,0 +1,80 @@
+---
+import Base from "../../layouts/Base.astro";
+import Crumbs from "../../components/Crumbs.astro";
+import Timeline from "../../components/Timeline.astro";
+import SourceList from "../../components/SourceList.astro";
+import { LINES, PFAS, FAMILY, MAKERS, STATUS, citeUrl, isPublished } from "../../lib/fluids";
+import { TIMELINE } from "../../lib/timeline";
+
+const groups = (["pfas", "undetermined", "free", "nonfluorinated"] as const).map((s) => ({ s, lines: LINES.filter((l) => l.pfas.status === s) })).filter((g) => g.lines.length);
+const href = (l: (typeof LINES)[number]) => (isPublished(l) ? `/fluids/${l.line}/` : `/fluids/#${l.grades[0].slug}`);
+const srcIds = [...new Set(["oecd-2021-terminology", ...TIMELINE.map((e) => e.src), "echa-pfas"])];
+---
+<Base title="PFAS and dielectric fluids — what counts, what is restricted, and when" description="Which dielectric fluid chemistries count as PFAS under the OECD definition, the status of every fluid in the register, and a dated, sourced timeline of 3M's exit and the EU universal PFAS restriction.">
+  <div class="page-head paper">
+    <div class="wrap">
+      <Crumbs items={[{ label: "PFAS tracker" }]} />
+      <h1>PFAS and dielectric fluids: what counts, and when it bites</h1>
+      <div class="answer" style="max-width:820px">
+        <span class="label">The short answer</span>
+        <p>Perfluorocarbons, perfluoropolyethers and hydrofluoroethers such as Novec contain fully fluorinated carbons, so they meet the OECD's structural definition of PFAS. Hydrocarbons and esters do not. 3M has exited PFAS manufacturing, and the EU's universal PFAS restriction has passed ECHA's risk committee, and its socio-economic committee's final opinion was expected by the end of 2026. No final EU scope, exemptions or dates exist yet.</p>
+      </div>
+    </div>
+  </div>
+
+  <section style="padding-top:2.25rem">
+    <div class="wrap article-grid" style="padding-top:0">
+      <div class="prose">
+        <h2 id="definition" style="margin-top:0">What counts as PFAS</h2>
+        <p>The OECD's 2021 terminology report revised the definition of PFAS around chemical structure. A fluorinated substance counts if it contains at least one fully fluorinated methyl (–CF₃) or methylene (–CF₂–) carbon atom, with no hydrogen, chlorine, bromine or iodine attached to that carbon.<sup class="cite"><a href={citeUrl("oecd-2021-terminology")} target="_blank" rel="noopener">↗</a></sup></p>
+        <p>This register applies that test only where the structure is disclosed, and it says which kind of evidence each status rests on:</p>
+        <ul>
+          <li><span class="chip chip-pfas">PFAS</span> — the maker's own document gives a structure that meets the definition. Examples: a perfluorocarbon, a perfluoropolyether "with no hydrogen in its structure", or a formula such as C₄F₉OCH₃.</li>
+          <li><span class="chip chip-free">PFAS-free</span> — the maker states it in its datasheet (for example "No PFAS"), or states the fluid contains no halogens.</li>
+          <li><span class="chip chip-free">Non-fluorinated</span> — the disclosed base chemistry is not fluorinated (for example a vegetable-oil ester), but the maker makes no PFAS statement of its own.</li>
+          <li><span class="chip chip-dev">Undetermined</span> — the structure is not disclosed. Ask the maker for the CAS number and its PFAS position in writing.</li>
+        </ul>
+        <p class="small muted">The EU restriction will use its own legal definition and exemptions once adopted. The OECD test tells you whether a fluid is in the conversation, not what the final rule will require.</p>
+
+        <h2>Every fluid in the register, by status</h2>
+        {groups.map((g) => (
+          <>
+            <h3><span class={`chip ${PFAS[g.s].chip}`}>{PFAS[g.s].label}</span> <span class="small muted" style="font-weight:400">{PFAS[g.s].long}</span></h3>
+            <div class="table-scroll" style="margin-top:.6rem">
+              <table class="data">
+                <thead><tr><th scope="col">Fluid</th><th scope="col">Chemistry</th><th scope="col">Status</th><th scope="col">Evidence (maker's words)</th></tr></thead>
+                <tbody>
+                  {g.lines.map((l) => (
+                    <tr>
+                      <td class="name"><a href={href(l)}>{l.name}</a><small>{MAKERS[l.maker].short} · {l.grades.length} grade{l.grades.length > 1 ? "s" : ""}</small></td>
+                      <td>{FAMILY[l.family].label}</td>
+                      <td><span class={`chip ${STATUS[l.status].chip}`}>{STATUS[l.status].label}</span></td>
+                      <td style="min-width:260px"><q>{l.pfas.quote}</q><sup class="cite"><a href={citeUrl(l.source, l.pfas.page)} target="_blank" rel="noopener">p.{l.pfas.page}</a></sup></td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </>
+        ))}
+
+        <h2>The timeline</h2>
+        <Timeline />
+
+        <h2>What it means for a buyer</h2>
+        <ul>
+          <li><b>Running 3M fluids today:</b> supply is the immediate problem. Use the <a href="/novec-replacement/">replacement finder</a> and plan requalification before your stock runs out.</li>
+          <li><b>Choosing a fluorinated replacement:</b> it may fix supply and keep the regulatory question. Ask the maker for its position on the EU restriction and any exemption it expects to claim.</li>
+          <li><b>Designing a new system:</b> a PFAS-free single-phase fluid removes the question for the life of the system. Weigh that against the performance case for two-phase. See <a href="/single-vs-two-phase/">single-phase vs two-phase</a>.</li>
+        </ul>
+        <p class="small muted">General information, not legal advice. Check the final text of any restriction, and take advice on your own obligations.</p>
+        <SourceList ids={srcIds} />
+      </div>
+      <aside class="toc">
+        <span class="eyebrow">On this page</span>
+        <ol><li><a href="#definition">What counts</a></li><li><a href="#main">By status</a></li><li><a href="#sources">Sources</a></li></ol>
+        <p class="small" style="margin-top:1.25rem"><a href={citeUrl("echa-pfas")} target="_blank" rel="noopener">ECHA's PFAS page</a> tracks the restriction process.</p>
+      </aside>
+    </div>
+  </section>
+</Base>

@@ -1,0 +1,180 @@
+---
+import Base from "../layouts/Base.astro";
+import Tank from "../components/Tank.astro";
+import Timeline from "../components/Timeline.astro";
+import Chips from "../components/Chips.astro";
+import { SITE } from "../lib/site";
+import { ROWS, counts, fmt, PROPS, MAKERS } from "../lib/fluids";
+
+const c = counts();
+const preview = ["electrocool-ec-110", "naturecool-2000", "opteon-2p50", "galden-ht55", "novec-7000", "fluorinert-fc-72"]
+  .map((s) => ROWS.find((r) => r.slug === s)!)
+  .filter(Boolean);
+const cols = ["boiling_point", "flash_point", "density", "thermal_conductivity", "dielectric_strength"];
+
+const jsonld = [
+  { "@context": "https://schema.org", "@type": "WebSite", name: "DielectricFluid", url: SITE.url, description: SITE.description },
+  { "@context": "https://schema.org", "@type": "Organization", name: "DielectricFluid", url: SITE.url, founder: { "@type": "Person", name: SITE.author }, logo: SITE.url + "/favicon.svg" },
+];
+---
+<Base title="DielectricFluid — the independent register of dielectric fluids" description={SITE.description} jsonld={jsonld}>
+  <section class="hero paper">
+    <div class="wrap inner">
+      <div>
+        <span class="eyebrow">Independent · vendor-neutral · cited</span>
+        <h1>Every dielectric fluid, <em>checked against its datasheet.</em></h1>
+        <p class="lede">Compare immersion-cooling, transformer and Novec-replacement fluids value by value. Every number links to the page of the maker's own document it came from. When you are ready to buy, the desk finds you supply.</p>
+        <div class="actions">
+          <a class="btn btn-primary" href="/fluids/">Open the register <span class="arrow">→</span></a>
+          <a class="btn btn-ghost" href="/novec-replacement/">Replace Novec or Fluorinert</a>
+        </div>
+        <div class="stats" aria-label="Register size">
+          <div><b>{c.products}</b><span>products &amp; grades</span></div>
+          <div><b>{c.makers}</b><span>makers</span></div>
+          <div><b>{c.values}</b><span>cited values</span></div>
+        </div>
+      </div>
+      <Tank />
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <span class="eyebrow">Start here</span>
+          <h2>What are you cooling?</h2>
+        </div>
+        <p class="muted" style="max-width:46ch">Pick your situation. Each route opens the register already filtered, or a tool built for that decision.</p>
+      </div>
+      <div class="apps">
+        <a class="app hot" href="/novec-replacement/">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 4l16 16M12 3c3 4 6 7.5 6 11a6 6 0 0 1-9.4 4.9M7.3 9.5C6.5 11 6 12.5 6 14" /></svg>
+          <b>Replacing Novec or Fluorinert</b>
+          <span>3M's grades are discontinued. Match yours to verified alternatives by boiling point, with PFAS risk shown.</span>
+          <span class="go">Replacement finder →</span>
+        </a>
+        <a class="app" href="/applications/data-center-immersion/">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="4" y="3" width="16" height="7" rx="1.5" /><rect x="4" y="14" width="16" height="7" rx="1.5" /><path d="M8 6.5h.01M8 17.5h.01" /></svg>
+          <b>AI &amp; data-centre immersion</b>
+          <span>Single-phase or two-phase, and which fluids fit each.</span>
+          <span class="go">Data-centre guide →</span>
+        </a>
+        <a class="app" href="/fluids/?app=transformer">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M13 2L5 13h6l-1 9 8-11h-6z" /></svg>
+          <b>Transformers</b>
+          <span>Ester and fluorinated insulating fluids, with flash and fire points.</span>
+          <span class="go">Filtered register →</span>
+        </a>
+        <a class="app" href="/fluids/?app=semiconductor">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="6" y="6" width="12" height="12" rx="1.5" /><path d="M9 2v4M15 2v4M9 18v4M15 18v4M2 9h4M2 15h4M18 9h4M18 15h4" /></svg>
+          <b>Semiconductor tools</b>
+          <span>Chiller and test fluids across a wide liquid range.</span>
+          <span class="go">Filtered register →</span>
+        </a>
+        <a class="app" href="/pfas/">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9" /><path d="M12 7v5l3 2" /></svg>
+          <b>Checking PFAS exposure</b>
+          <span>Which chemistries count as PFAS, and where the EU restriction stands.</span>
+          <span class="go">PFAS tracker →</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section style="padding-top:0">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <span class="eyebrow">The register</span>
+          <h2>Value by value, source by source</h2>
+        </div>
+        <a class="btn btn-ghost" href="/fluids/">See all {c.products} <span class="arrow">→</span></a>
+      </div>
+      <div class="table-scroll">
+        <table class="data">
+          <thead>
+            <tr>
+              <th scope="col">Product</th>
+              <th scope="col">Status</th>
+              {cols.map((k) => <th scope="col" class="n">{PROPS[k].short}{PROPS[k].unit ? ` (${PROPS[k].unit})` : ""}</th>)}
+            </tr>
+          </thead>
+          <tbody>
+            {preview.map((r) => (
+              <tr>
+                <td class="name"><a href={r.href}>{r.name}</a><small>{MAKERS[r.line.maker].short}</small></td>
+                <td><Chips line={r.line} phase={false} /></td>
+                {cols.map((k) => <td class="n">{fmt(r.props[k]) || <span class="empty">—</span>}</td>)}
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      <p class="small muted" style="margin-top:.8rem">Conditions differ between makers (temperature, test gap). The register shows them on every value. Never compare two dielectric strengths measured at different gaps as if they were equal.</p>
+    </div>
+  </section>
+
+  <section class="paper" style="border-block:1px solid var(--line)">
+    <div class="wrap grid grid-2" style="align-items:start;gap:3rem">
+      <div>
+        <span class="eyebrow">The PFAS clock</span>
+        <h2 style="font-size:var(--fs-2xl);margin-top:.5rem">The fluid you qualified may not be the fluid you can buy</h2>
+        <p class="lede" style="margin-top:1rem">3M has left PFAS manufacturing and the EU's universal PFAS restriction is moving through ECHA's committees. A fluorinated drop-in can solve supply and still carry the regulatory question. We track both, with the source on every line.</p>
+        <a class="btn btn-ghost" style="margin-top:1.5rem" href="/pfas/">Open the PFAS tracker <span class="arrow">→</span></a>
+      </div>
+      <Timeline limit={5} />
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <span class="eyebrow">The desk</span>
+          <h2>Tell us what you are cooling. We find the supply.</h2>
+        </div>
+      </div>
+      <ol class="steps">
+        <li><b>Send your requirements</b><span>Application, volume, the grade you are replacing, PFAS constraints and timeline. Two minutes.</span></li>
+        <li><b>We shortlist from the register</b><span>Only fluids whose datasheets fit, with every value cited, so your engineers can check our work.</span></li>
+        <li><b>We go to the makers</b><span>We ask the matching makers and distributors for price, lead time and minimum order, then chase the answers.</span></li>
+        <li><b>You compare and decide</b><span>A side-by-side answer you can take to your team. No obligation, and your details are not shared without your say-so.</span></li>
+      </ol>
+      <div class="band" style="margin-top:2rem">
+        <div>
+          <h2>Have a fluid to source or replace?</h2>
+          <p>Free for buyers. If a supplier pays us a referral fee, we tell you before you decide.</p>
+        </div>
+        <a class="btn btn-primary" href="/desk/">Ask the desk <span class="arrow">→</span></a>
+      </div>
+    </div>
+  </section>
+
+  <section style="padding-top:0">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <span class="eyebrow">Guides</span>
+          <h2>The fundamentals, sourced</h2>
+        </div>
+        <a class="btn btn-ghost" href="/guides/">All guides <span class="arrow">→</span></a>
+      </div>
+      <div class="grid grid-3">
+        <a class="card" href="/what-is-dielectric-fluid/"><h3>What is a dielectric fluid?</h3><p>The property that lets a liquid touch live electronics, and the numbers that describe it.</p><span class="go">Read →</span></a>
+        <a class="card" href="/single-vs-two-phase/"><h3>Single-phase or two-phase?</h3><p>The first fork in any immersion project, and why it decides which fluids you can use.</p><span class="go">Read →</span></a>
+        <a class="card" href="/fluid-types/"><h3>The fluid families</h3><p>Hydrocarbons, esters and fluorinated fluids compared on real datasheet values.</p><span class="go">Read →</span></a>
+      </div>
+    </div>
+  </section>
+
+  <section style="padding-top:0">
+    <div class="wrap">
+      <div class="card" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr));gap:1.5rem">
+        <div><span class="eyebrow">How we check</span><h3 style="margin-top:.5rem">Maker documents only</h3><p>Values come from the maker's own datasheet or brochure, or an archived copy of it. We never take them from a reseller's summary.</p></div>
+        <div><h3 style="margin-top:1.6rem">Every value is linked</h3><p>Each number links to the document and page it came from, with the test condition and the date we checked it.</p></div>
+        <div><h3 style="margin-top:1.6rem">Corrections in public</h3><p>When a maker revises a sheet, or we get something wrong, the change goes in the <a href="/updates/">updates log</a>.</p></div>
+      </div>
+    </div>
+  </section>
+</Base>

@@ -1,0 +1,60 @@
+{
+  "line": "novec-7100",
+  "name": "3M™ Novec™ 7100",
+  "maker": "3m",
+  "family": "hfe",
+  "status": "discontinued",
+  "applications": [
+    "test-cleaning"
+  ],
+  "source": "3m-novec7100-pi",
+  "page": 2,
+  "summary": "A hydrofluoroether, methoxy-nonafluorobutane (C₄F₉OCH₃), with a 61 °C boiling point. Uses listed by 3M include vapour degreasing and dielectric test media. It is listed in 3M's PFAS manufacturing exit (customer letter, Appendix 1). The archived product sheet gives no thermal or dielectric-strength values, so this record is incomplete.",
+  "status_source": {
+    "src": "3m-exit-letter",
+    "page": 2
+  },
+  "pfas": {
+    "status": "pfas",
+    "basis": "structure",
+    "quote": "Formula C4F9OCH3",
+    "page": 2,
+    "note": "The C₄F₉ group contains fully fluorinated methyl and methylene carbons, so it meets the OECD (2021) structural definition of PFAS."
+  },
+  "published_on": null,
+  "grades": [
+    {
+      "slug": "novec-7100",
+      "name": "Novec 7100",
+      "props": {
+        "boiling_point": {
+          "v": 61
+        },
+        "pour_point": {
+          "v": -135,
+          "label": "freeze point"
+        },
+        "density": {
+          "v": 1.52,
+          "at": "25 °C",
+          "pub": "1.52 g/ml"
+        },
+        "vapor_pressure": {
+          "v": 26.9,
+          "at": "25 °C",
+          "pub": "202 mmHg"
+        },
+        "gwp": {
+          "v": 320,
+          "method": "100-yr ITH"
+        },
+        "odp": {
+          "v": 0
+        },
+        "flash_point": {
+          "none": true
+        }
+      }
+    }
+  ]
+}

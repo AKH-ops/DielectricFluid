@@ -1,0 +1,60 @@
+---
+import Base from "../../layouts/Base.astro";
+import Crumbs from "../../components/Crumbs.astro";
+import { SITE } from "../../lib/site";
+const faq = [
+  { q: "What does it cost?", a: "Nothing for buyers. If an introduction leads to business, the supplier may pay us a referral fee. We tell you before you decide, and it never changes what the register shows." },
+  { q: "Will you share my details?", a: "Only with your agreement. You can ask us to answer your questions without contacting any supplier, and we will." },
+  { q: "Who will I hear from?", a: "From us, at the address you give, replying to your request. We do not add you to mailing lists." },
+  { q: "What should I not send?", a: "Confidential specifications or sensitive personal data. A description of the application, volume and constraints is enough to start." },
+];
+const jsonld = { "@context": "https://schema.org", "@type": "FAQPage", mainEntity: faq.map((f) => ({ "@type": "Question", name: f.q, acceptedAnswer: { "@type": "Answer", text: f.a } })) };
+---
+<Base title="The sourcing desk — tell us what you are cooling, we find the supply" description="Send your application, volume, PFAS constraint and the fluid you are replacing. We shortlist fluids from the cited register and come back with options and quotes. Free for buyers." jsonld={jsonld}>
+  <div class="page-head paper">
+    <div class="wrap">
+      <Crumbs items={[{ label: "Desk" }]} />
+      <h1>Tell us what you are cooling. We find the supply.</h1>
+      <p class="lede">Replacing a discontinued 3M fluid, filling a new immersion tank, or re-specifying a transformer fluid? Send the essentials. We shortlist from the register, go to the makers and distributors that fit, and come back with options you can check.</p>
+    </div>
+  </div>
+  <section style="padding-top:2.25rem">
+    <div class="wrap article-grid" style="padding-top:0">
+      <div>
+        <div class="card" style="padding:clamp(.75rem,.5rem + 1vw,1.5rem)">
+          <iframe class="embed-frame" data-tally-src={`https://tally.so/embed/${SITE.tallyForm}?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1`} loading="lazy" title="Sourcing desk request form"></iframe>
+          <noscript><p>The form needs JavaScript. Email <a href={`mailto:${SITE.email}`}>{SITE.email}</a> instead.</p></noscript>
+        </div>
+        <p class="small muted" style="margin-top:.8rem">Prefer email? <a href={`mailto:${SITE.email}`}>{SITE.email}</a>. Please do not send confidential specifications or sensitive personal data. See our <a href="/privacy/">privacy policy</a>.</p>
+      </div>
+      <aside>
+        <ol class="steps" style="grid-template-columns:1fr">
+          <li><b>You send the essentials</b><span>Application, fill volume, the fluid you are replacing, PFAS constraint, timeline.</span></li>
+          <li><b>We shortlist</b><span>Only fluids whose datasheets fit, every value cited.</span></li>
+          <li><b>We ask the makers</b><span>Price, lead time, minimum order and warranty notes, with your agreement.</span></li>
+          <li><b>You decide</b><span>A side-by-side answer for your team. No obligation.</span></li>
+        </ol>
+      </aside>
+    </div>
+    <div class="wrap-narrow prose" style="margin-top:1rem">
+      <h2>Questions</h2>
+      <div class="faq">{faq.map((f) => <details><summary>{f.q}</summary><p>{f.a}</p></details>)}</div>
+    </div>
+  </section>
+  <script is:inline>
+    // Pass context from the finder or a product page (e.g. ?replacing=Novec%207100&source=novec-finder) into the form's
+    // hidden fields, then load Tally's embed script, which sizes the iframe.
+    (function () {
+      var f = document.querySelector("iframe[data-tally-src]");
+      if (f && location.search) {
+        var p = new URLSearchParams(location.search), keep = new URLSearchParams();
+        ["replacing", "fluid", "source", "application", "pfas", "phase"].forEach(function (k) { if (p.get(k)) keep.set(k === "replacing" ? "vendor" : k, p.get(k)); });
+        if ([...keep].length) f.setAttribute("data-tally-src", f.getAttribute("data-tally-src") + "&" + keep.toString());
+      }
+      var s = document.createElement("script");
+      s.src = "https://tally.so/widgets/embed.js";
+      s.onload = function () { window.Tally && window.Tally.loadEmbeds(); };
+      document.body.appendChild(s);
+    })();
+  </script>
+</Base>

@@ -1,0 +1,18 @@
+---
+import Base from "../layouts/Base.astro";
+---
+<Base title="Page not found" description="The page you asked for is not on DielectricFluid.com. Try the register, the replacement finder or the guides." noindex>
+  <section class="paper" style="min-height:60vh;display:grid;place-items:center">
+    <div class="wrap-narrow" style="text-align:center">
+      <span class="eyebrow">404</span>
+      <h1 style="font-size:var(--fs-2xl);margin:.75rem 0 1rem">That page is not in the register</h1>
+      <p class="lede" style="margin-inline:auto">It may have moved when the site was rebuilt. These will get you where you were going:</p>
+      <div style="display:flex;flex-wrap:wrap;gap:.75rem;justify-content:center;margin-top:1.75rem">
+        <a class="btn btn-primary" href="/fluids/">The register</a>
+        <a class="btn btn-ghost" href="/novec-replacement/">Novec replacement</a>
+        <a class="btn btn-ghost" href="/guides/">Guides</a>
+        <a class="btn btn-ghost" href="/desk/">Ask the desk</a>
+      </div>
+    </div>
+  </section>
+</Base>

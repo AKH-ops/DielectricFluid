@@ -1,0 +1,87 @@
+{
+  "line": "fluorinert-fc-72",
+  "name": "3M™ Fluorinert™ FC-72",
+  "maker": "3m",
+  "family": "pfc",
+  "status": "discontinued",
+  "applications": [
+    "test-cleaning"
+  ],
+  "source": "3m-fc72-tds",
+  "page": 1,
+  "summary": "A clear, colourless, fully fluorinated liquid with a 56 °C boiling point. 3M described it as suited to electronics quality and reliability testing, including gross leak testing. It is listed in 3M’s PFAS manufacturing exit (customer letter, Appendix 1, 20 Dec 2022). 3M’s own sheet notes that, as a perfluorocarbon, it has a high global warming potential and a long atmospheric lifetime.",
+  "status_source": {
+    "src": "3m-exit-letter",
+    "page": 2
+  },
+  "pfas": {
+    "status": "pfas",
+    "basis": "structure",
+    "quote": "As a perfluorocarbon (PFC), this product has a high global warming potential and a long atmospheric lifetime.",
+    "page": 3,
+    "note": "A perfluorocarbon is fully fluorinated, so it meets the OECD (2021) structural definition of PFAS."
+  },
+  "published_on": "2026-10-11",
+  "grades": [
+    {
+      "slug": "fluorinert-fc-72",
+      "name": "Fluorinert FC-72",
+      "props": {
+        "boiling_point": {
+          "v": 56
+        },
+        "pour_point": {
+          "v": -90
+        },
+        "density": {
+          "v": 1.68,
+          "at": "25 °C",
+          "pub": "1680 kg/m³"
+        },
+        "viscosity_kin": {
+          "v": 0.38,
+          "at": "25 °C"
+        },
+        "viscosity_dyn": {
+          "v": 0.64,
+          "at": "25 °C"
+        },
+        "vapor_pressure": {
+          "v": 30.9,
+          "at": "25 °C",
+          "pub": "30.9 × 10³ Pa"
+        },
+        "latent_heat": {
+          "v": 88,
+          "at": "boiling point",
+          "pub": "88 J/g"
+        },
+        "specific_heat": {
+          "v": 1.1,
+          "at": "25 °C",
+          "pub": "1100 J/kg·°C"
+        },
+        "thermal_conductivity": {
+          "v": 0.057,
+          "at": "25 °C"
+        },
+        "dielectric_strength": {
+          "v": 38,
+          "method": "0.1 in (2.54 mm) gap",
+          "p": 2
+        },
+        "dielectric_constant": {
+          "v": 1.75,
+          "method": "1 kHz",
+          "p": 2
+        },
+        "odp": {
+          "v": 0
+        },
+        "flash_point": {
+          "none": true
+        }
+      }
+    }
+  ]
+}

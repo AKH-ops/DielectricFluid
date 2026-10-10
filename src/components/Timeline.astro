@@ -1,0 +1,18 @@
+---
+import { TIMELINE } from "../lib/timeline";
+import { SOURCES } from "../lib/fluids";
+interface Props { limit?: number }
+const { limit } = Astro.props;
+const items = limit ? TIMELINE.slice(0, limit) : TIMELINE;
+---
+<div class="timeline">
+  {items.map((e) => (
+    <div class={`tl-item${e.future ? " future" : ""}`}>
+      <div class="when">{e.when}</div>
+      <div>
+        <h3>{e.title}</h3>
+        <p>{e.text} <a class="cite" href={SOURCES[e.src].url} rel="noopener" target="_blank" title={SOURCES[e.src].title}>[source]</a></p>
+      </div>
+    </div>
+  ))}
+</div>

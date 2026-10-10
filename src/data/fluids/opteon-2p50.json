@@ -1,0 +1,78 @@
+{
+  "line": "opteon-2p50",
+  "name": "Opteon™ 2P50",
+  "maker": "chemours",
+  "family": "hfo",
+  "phase": "two",
+  "status": "developmental",
+  "applications": [
+    "electronics-cooling"
+  ],
+  "source": "chemours-2p50-pis",
+  "page": 1,
+  "summary": "A developmental hydrofluoroolefin (HFO) fluid for two-phase immersion cooling. It boils at 48.9 °C, has a GWP of 10 (AR6), and has no flash point and no flammability limits. Chemours positions it as a replacement for PFPEs, HFEs, fluoroketones and PFCs in immersion cooling. It is a developmental product: confirm commercial availability with Chemours.",
+  "pfas": {
+    "status": "undetermined",
+    "basis": "structure-undisclosed",
+    "quote": "a developmental proprietary hydrofluoroolefin fluid",
+    "page": 1,
+    "note": "The sheet does not disclose the molecular structure, so this register cannot test it against the OECD (2021) definition. Ask Chemours for the CAS number and its own PFAS position in writing."
+  },
+  "published_on": "2026-10-11",
+  "grades": [
+    {
+      "slug": "opteon-2p50",
+      "name": "Opteon 2P50",
+      "props": {
+        "boiling_point": {
+          "v": 48.9
+        },
+        "density": {
+          "v": 1.456,
+          "at": "25 °C"
+        },
+        "vapor_pressure": {
+          "v": 40,
+          "at": "25 °C",
+          "pub": "0.040 MPa"
+        },
+        "viscosity_dyn": {
+          "v": 0.62,
+          "at": "25 °C"
+        },
+        "thermal_conductivity": {
+          "v": 0.073,
+          "at": "25 °C"
+        },
+        "specific_heat": {
+          "v": 1.09,
+          "at": "25 °C"
+        },
+        "latent_heat": {
+          "v": 115,
+          "at": "boiling point",
+          "pub": "115 (unit printed as kJ/kg·K)"
+        },
+        "dielectric_strength": {
+          "v": 59,
+          "method": "IEC 60156, 2.5 mm gap"
+        },
+        "dielectric_constant": {
+          "v": 1.82,
+          "method": "ASTM D924"
+        },
+        "gwp": {
+          "v": 10,
+          "method": "AR6, 100-yr"
+        },
+        "odp": {
+          "v": 0
+        },
+        "flash_point": {
+          "none": true,
+          "method": "ASTM D93"
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "_note": "3M grades named in Appendix 1 'List of Impacted Products' of 3M's 20 Dec 2022 customer letter (source 3m-exit-letter, page 2). 'line' links a grade to its verified register record; grades without one have no verified datasheet here yet.",
+  "grades": [
+    { "id": "novec-649", "name": "Novec 649" },
+    { "id": "novec-7000", "name": "Novec 7000", "line": "novec-7000" },
+    { "id": "novec-7100", "name": "Novec 7100", "line": "novec-7100" },
+    { "id": "novec-7200", "name": "Novec 7200" },
+    { "id": "novec-7300", "name": "Novec 7300" },
+    { "id": "novec-7500", "name": "Novec 7500" },
+    { "id": "novec-7700", "name": "Novec 7700" },
+    { "id": "novec-8200", "name": "Novec 8200" },
+    { "id": "novec-1230", "name": "Novec 1230 Fire Protection Fluid", "note": "fire suppression, not a coolant" },
+    { "id": "fluorinert-fc-40", "name": "Fluorinert FC-40" },
+    { "id": "fluorinert-fc-43", "name": "Fluorinert FC-43" },
+    { "id": "fluorinert-fc-72", "name": "Fluorinert FC-72", "line": "fluorinert-fc-72" },
+    { "id": "fluorinert-fc-770", "name": "Fluorinert FC-770", "line": "fluorinert-fc-770" },
+    { "id": "fluorinert-fc-3283", "name": "Fluorinert FC-3283" },
+    { "id": "fluorinert-fc-3284", "name": "Fluorinert FC-3284" },
+    { "id": "pf-5052", "name": "Performance Fluid PF-5052" },
+    { "id": "pf-5056", "name": "Performance Fluid PF-5056" },
+    { "id": "pf-5058", "name": "Performance Fluid PF-5058" },
+    { "id": "pf-5060", "name": "Performance Fluid PF-5060" }
+  ]
+}

@@ -1,0 +1,140 @@
+{
+  "ef-electrocool-tds": {
+    "title": "ElectroCool Dielectric Coolants — technical data sheet (doc. EC1XX-ENG-TDS-20260505)",
+    "publisher": "Engineered Fluids, Inc.",
+    "kind": "maker datasheet",
+    "url": "https://www.engineeredfluids.com/wp-content/uploads/2026/06/ElectroCool-TDS-1.pdf",
+    "checked": "2026-10-11"
+  },
+  "syensqo-galden-ht": {
+    "title": "Galden® HT PFPE Heat Transfer Fluids — product brochure (property table, values at 25 °C)",
+    "publisher": "Syensqo (formerly Solvay)",
+    "kind": "maker brochure",
+    "host": "copy hosted by Kurt J. Lesker Company",
+    "url": "https://www.lesker.com/newweb/fluids/pdf/galden_pfpe_heat_transfer_fluids.pdf",
+    "checked": "2026-10-11"
+  },
+  "cargill-naturecool-2000-tds": {
+    "title": "NatureCool™ 2000 Immersion Cooling Fluid — technical data sheet (©2024)",
+    "publisher": "Cargill, Incorporated",
+    "kind": "maker datasheet",
+    "url": "https://www.cargill.com/bioindustrial/doc/1432245644639/naturecool-2000-tds.pdf",
+    "checked": "2026-10-11"
+  },
+  "cargill-fr3-tds": {
+    "title": "Envirotemp™ FR3™ Fluid R2000 — technical data sheet",
+    "publisher": "Cargill, Incorporated",
+    "kind": "maker datasheet",
+    "url": "https://www.cargill.com/doc/1432076501923/envirotemp-fr3-r2000-tds.pdf",
+    "checked": "2026-10-11"
+  },
+  "chemours-2p50-pis": {
+    "title": "Opteon™ 2P50 Developmental Dielectric Heat Transfer Fluid — product information sheet",
+    "publisher": "The Chemours Company",
+    "kind": "maker datasheet",
+    "url": "https://www.opteon.com/en/-/media/files/opteon/opteon-2p50-gic-product-info-sheet-fnl-100523.pdf",
+    "checked": "2026-10-11"
+  },
+  "3m-fc72-tds": {
+    "title": "3M™ Fluorinert™ Electronic Liquid FC-72 — product information",
+    "publisher": "3M",
+    "kind": "maker datasheet",
+    "url": "https://multimedia.3m.com/mws/media/64892O/3m-fluorinert-electronic-liquid-fc72-en.pdf",
+    "checked": "2026-10-11"
+  },
+  "3m-fc770-tds": {
+    "title": "3M™ Fluorinert™ Electronic Liquid FC-770 — product information",
+    "publisher": "3M",
+    "kind": "maker datasheet",
+    "host": "Internet Archive copy, captured 2022-12-04",
+    "url": "https://web.archive.org/web/20221204130822/https://multimedia.3m.com/mws/media/471785O/3m-fluorinert-electronic-liquid-fc770-product-info-sheet-en.pdf",
+    "checked": "2026-10-11"
+  },
+  "3m-novec7000-tds": {
+    "title": "3M™ Novec™ 7000 Engineered Fluid — technical data sheet (heat transfer, R3)",
+    "publisher": "3M",
+    "kind": "maker datasheet",
+    "host": "Internet Archive copy, captured 2024-08-23",
+    "url": "https://web.archive.org/web/20240823222517/https://multimedia.3m.com/mws/media/121372O/3m-novec-7000-engineered-fluid-tds.pdf",
+    "checked": "2026-10-11"
+  },
+  "3m-novec7100-pi": {
+    "title": "3M™ Novec™ 7100 Engineered Fluid — product information",
+    "publisher": "3M",
+    "kind": "maker datasheet",
+    "host": "Internet Archive copy, captured 2023-12-01",
+    "url": "https://web.archive.org/web/20231201221810/https://multimedia.3m.com/mws/media/199818O/3m-novec-7100-engineered-fluid.pdf",
+    "checked": "2026-10-11"
+  },
+  "3m-exit-release": {
+    "title": "3M to Exit PFAS Manufacturing by the End of 2025 (news release, 20 Dec 2022)",
+    "publisher": "3M",
+    "kind": "maker announcement",
+    "url": "https://news.3m.com/2022-12-20-3M-to-Exit-PFAS-Manufacturing-by-the-End-of-2025",
+    "checked": "2026-10-11"
+  },
+  "3m-exit-letter": {
+    "title": "3M customer letter on the PFAS manufacturing phase-out, 20 Dec 2022, with Appendix 1 'List of Impacted Products'",
+    "publisher": "3M Electronics Materials Solutions Division",
+    "kind": "maker letter",
+    "host": "copy hosted by Silmid",
+    "url": "https://www.silmid.com/Documents/3M_PFAS_Manufacturing_Phase_Out_Customer_Letter%20(1).pdf",
+    "checked": "2026-10-11"
+  },
+  "3m-10q-q3-2025": {
+    "title": "3M Company Form 10-Q for the quarter ended 30 Sep 2025",
+    "publisher": "3M / U.S. SEC EDGAR",
+    "kind": "regulatory filing",
+    "url": "https://www.sec.gov/Archives/edgar/data/66740/000006674025000089/mmm-20250930.htm",
+    "checked": "2026-10-11"
+  },
+  "oecd-2021-terminology": {
+    "title": "Reconciling Terminology of the Universe of Per- and Polyfluoroalkyl Substances: Recommendations and Practical Guidance (ENV/CBC/MONO(2021)25)",
+    "publisher": "OECD",
+    "kind": "intergovernmental report",
+    "url": "https://www.oecd-ilibrary.org/environment/reconciling-terminology-of-the-universe-of-per-and-polyfluoroalkyl-substances_e458e796-en",
+    "checked": "2026-10-11"
+  },
+  "lexis-rac-2026": {
+    "title": "ECHA adopts opinion on proposed universal PFAS restriction (LexisNexis news, 4 Mar 2026)",
+    "publisher": "LexisNexis",
+    "kind": "legal news",
+    "url": "https://www.lexisnexis.co.uk/legal/news/echa-adopts-opinion-on-proposed-universal-pfas-restriction",
+    "checked": "2026-10-11"
+  },
+  "echa-pfas": {
+    "title": "Per- and polyfluoroalkyl substances (PFAS) — ECHA hot topic and restriction process",
+    "publisher": "European Chemicals Agency",
+    "kind": "regulator",
+    "url": "https://echa.europa.eu/hot-topics/perfluoroalkyl-chemicals-pfas",
+    "checked": "2026-10-11"
+  },
+  "mm-dc-fluids": {
+    "title": "Data Center Immersion Cooling Fluids Market — press release",
+    "publisher": "MarketsandMarkets",
+    "kind": "market research summary",
+    "url": "https://www.marketsandmarkets.com/PressReleases/data-center-immersion-cooling-fluids.asp",
+    "checked": "2026-10-11"
+  },
+  "register-2025": {
+    "title": "If you dip your toes into immersion cooling, watch out for dielectric liquid sharks (25 Feb 2025)",
+    "publisher": "The Register",
+    "kind": "trade press",
+    "url": "https://www.theregister.com/2025/02/25/immersion_cooling_dielectric_liquid_market_concentration",
+    "checked": "2026-10-11"
+  },
+  "kh-2023-proposal": {
+    "title": "Five national authorities request PFAS restriction under REACH (20 Jan 2023)",
+    "publisher": "Keller and Heckman — packaginglaw.com",
+    "kind": "legal news",
+    "url": "https://www.packaginglaw.com/news/five-national-authorities-request-pfas-restriction-under-reach",
+    "checked": "2026-10-11"
+  },
+  "chemours-2p50-page": {
+    "title": "Opteon™ 2P50 Developmental Dielectric Heat Transfer Fluid — product page",
+    "publisher": "The Chemours Company",
+    "kind": "maker product page",
+    "url": "https://www.opteon.com/en/products/liquid-cooling/2p50",
+    "checked": "2026-10-11"
+  }
+}

@@ -1,0 +1,224 @@
+{
+  "line": "electrocool",
+  "name": "ElectroCool",
+  "maker": "engineered-fluids",
+  "family": "synthetic-hydrocarbon",
+  "phase": "single",
+  "status": "active",
+  "applications": [
+    "electronics-cooling",
+    "semiconductor"
+  ],
+  "source": "ef-electrocool-tds",
+  "page": 2,
+  "summary": "Five single-phase immersion coolants made from synthetic hydrocarbons in Tyler, Texas. The datasheet gives every grade a dielectric strength above 60 kV (ASTM D1816, 2 mm gap), a global warming potential of 0, and states \"No PFAS\".",
+  "pfas": {
+    "status": "free",
+    "basis": "maker",
+    "quote": "No Sulfur. No Phosphates. No PFAS.",
+    "page": 1
+  },
+  "published_on": "2026-10-11",
+  "grades": [
+    {
+      "slug": "electrocool-ec-110",
+      "name": "ElectroCool EC-110",
+      "use": "General electronics cooling",
+      "props": {
+        "flash_point": {
+          "v": 203
+        },
+        "pour_point": {
+          "v": -60
+        },
+        "density": {
+          "v": 0.82,
+          "at": "20 °C"
+        },
+        "viscosity_kin": {
+          "v": 7.25,
+          "at": "40 °C"
+        },
+        "thermal_conductivity": {
+          "v": 0.1374,
+          "at": "40 °C"
+        },
+        "specific_heat": {
+          "v": 2.2338,
+          "at": "40 °C"
+        },
+        "dielectric_strength": {
+          "v": 60,
+          "q": ">",
+          "method": "ASTM D1816, 2 mm gap"
+        },
+        "dielectric_constant": {
+          "v": 2.1
+        },
+        "gwp": {
+          "v": 0
+        }
+      }
+    },
+    {
+      "slug": "electrocool-ec-120",
+      "name": "ElectroCool EC-120",
+      "use": "High-temperature electronics",
+      "props": {
+        "flash_point": {
+          "v": 228
+        },
+        "pour_point": {
+          "v": -60
+        },
+        "density": {
+          "v": 0.82,
+          "at": "20 °C"
+        },
+        "viscosity_kin": {
+          "v": 16.1,
+          "at": "40 °C"
+        },
+        "thermal_conductivity": {
+          "v": 0.1439,
+          "at": "40 °C"
+        },
+        "specific_heat": {
+          "v": 2.206,
+          "at": "40 °C"
+        },
+        "dielectric_strength": {
+          "v": 60,
+          "q": ">",
+          "method": "ASTM D1816, 2 mm gap"
+        },
+        "dielectric_constant": {
+          "v": 2.2
+        },
+        "gwp": {
+          "v": 0
+        }
+      }
+    },
+    {
+      "slug": "electrocool-ec-122",
+      "name": "ElectroCool EC-122",
+      "use": "Lowest viscosity — microchannels and actuators",
+      "props": {
+        "flash_point": {
+          "v": 157
+        },
+        "pour_point": {
+          "v": -65
+        },
+        "density": {
+          "v": 0.81,
+          "at": "20 °C"
+        },
+        "viscosity_kin": {
+          "v": 5.02,
+          "at": "40 °C"
+        },
+        "thermal_conductivity": {
+          "v": 0.1359,
+          "at": "40 °C"
+        },
+        "specific_heat": {
+          "v": 2.21,
+          "at": "40 °C"
+        },
+        "dielectric_strength": {
+          "v": 60,
+          "q": ">",
+          "method": "ASTM D1816, 2 mm gap"
+        },
+        "dielectric_constant": {
+          "v": 2.1
+        },
+        "gwp": {
+          "v": 0
+        }
+      }
+    },
+    {
+      "slug": "electrocool-ec-130",
+      "name": "ElectroCool EC-130",
+      "use": "Higher flash point for an extra safety margin",
+      "props": {
+        "flash_point": {
+          "v": 260
+        },
+        "pour_point": {
+          "v": -58
+        },
+        "density": {
+          "v": 0.83,
+          "at": "20 °C"
+        },
+        "viscosity_kin": {
+          "v": 36.1,
+          "at": "40 °C"
+        },
+        "thermal_conductivity": {
+          "v": 0.1466,
+          "at": "40 °C"
+        },
+        "specific_heat": {
+          "v": 2.21,
+          "at": "40 °C"
+        },
+        "dielectric_strength": {
+          "v": 60,
+          "q": ">",
+          "method": "ASTM D1816, 2 mm gap"
+        },
+        "dielectric_constant": {
+          "v": 2.104
+        },
+        "gwp": {
+          "v": 0
+        }
+      }
+    },
+    {
+      "slug": "electrocool-ec-140",
+      "name": "ElectroCool EC-140",
+      "use": "Extreme-temperature semiconductor use; highest flash point",
+      "props": {
+        "flash_point": {
+          "v": 285
+        },
+        "pour_point": {
+          "v": -54
+        },
+        "density": {
+          "v": 0.84,
+          "at": "20 °C"
+        },
+        "viscosity_kin": {
+          "v": 67.1,
+          "at": "40 °C"
+        },
+        "thermal_conductivity": {
+          "v": 0.1568,
+          "at": "40 °C"
+        },
+        "specific_heat": {
+          "v": 2.1912,
+          "at": "40 °C"
+        },
+        "dielectric_strength": {
+          "v": 60,
+          "q": ">",
+          "method": "ASTM D1816, 2 mm gap"
+        },
+        "dielectric_constant": {
+          "v": 2.22
+        },
+        "gwp": {
+          "v": 0
+        }
+      }
+    }
+  ]
+}

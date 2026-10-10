@@ -1,0 +1,79 @@
+{
+  "line": "novec-7000",
+  "name": "3M™ Novec™ 7000",
+  "maker": "3m",
+  "family": "hfe",
+  "status": "discontinued",
+  "applications": [
+    "semiconductor",
+    "test-cleaning",
+    "electronics-cooling"
+  ],
+  "source": "3m-novec7000-tds",
+  "page": 2,
+  "summary": "A hydrofluoroether, 1-methoxyheptafluoropropane (C₃F₇OCH₃), with a 34 °C boiling point. 3M positioned it as a low-GWP alternative to perfluorocarbon and perfluoropolyether heat-transfer liquids. It is listed in 3M's PFAS manufacturing exit (customer letter, Appendix 1).",
+  "status_source": {
+    "src": "3m-exit-letter",
+    "page": 2
+  },
+  "pfas": {
+    "status": "pfas",
+    "basis": "structure",
+    "quote": "composed of 1-methoxyheptafluoropropane (C3F7OCH3)",
+    "page": 1,
+    "note": "The C₃F₇ group contains fully fluorinated methyl and methylene carbons, so it meets the OECD (2021) structural definition of PFAS."
+  },
+  "published_on": "2026-10-11",
+  "grades": [
+    {
+      "slug": "novec-7000",
+      "name": "Novec 7000",
+      "props": {
+        "boiling_point": {
+          "v": 34
+        },
+        "pour_point": {
+          "v": -122
+        },
+        "density": {
+          "v": 1.4,
+          "at": "25 °C",
+          "pub": "1400 kg/m³"
+        },
+        "viscosity_kin": {
+          "v": 0.32,
+          "at": "25 °C"
+        },
+        "viscosity_dyn": {
+          "v": 0.45,
+          "at": "25 °C"
+        },
+        "vapor_pressure": {
+          "v": 65,
+          "at": "25 °C"
+        },
+        "latent_heat": {
+          "v": 142,
+          "at": "boiling point"
+        },
+        "specific_heat": {
+          "v": 1.3,
+          "at": "25 °C",
+          "pub": "1300 J/kg·K"
+        },
+        "thermal_conductivity": {
+          "v": 0.075,
+          "at": "25 °C"
+        },
+        "dielectric_strength": {
+          "v": 25,
+          "q": ">",
+          "method": "0.1 in (2.54 mm) gap"
+        },
+        "dielectric_constant": {
+          "v": 7.4
+        }
+      }
+    }
+  ]
+}

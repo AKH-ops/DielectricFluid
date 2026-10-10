@@ -1,0 +1,30 @@
+# Cloudflare Workers static assets honour this file; rules here win over html_handling (verified on marathonstay.com,
+# 14 Aug 2026). Every URL the Blogger site served gets a real 301 to its new home, so the two pages Google already
+# shows (/ and /p/novec-replacement.html) and any links to the others carry over.
+# A generated block of no-trailing-slash 301s is appended at build time (astro.config.mjs).
+
+# --- Blogger pages (backup: _source/blogger-2026-10-10) ---
+/p/what-is-dielectric-fluid.html    /what-is-dielectric-fluid/    301
+/p/fluid-types.html                 /fluid-types/                 301
+/p/single-vs-two-phase.html         /single-vs-two-phase/         301
+/p/compare-fluids.html              /fluids/                      301
+/p/choose-fluid.html                /choose/                      301
+/p/data-centers.html                /applications/data-center-immersion/    301
+/p/ev-cooling.html                  /choose/                      301
+/p/pfas-transition.html             /pfas/                        301
+/p/novec-replacement.html           /novec-replacement/           301
+/p/suppliers.html                   /makers/                      301
+/p/about.html                       /about/                       301
+/p/contact.html                     /desk/                        301
+/p/updates.html                     /updates/                     301
+/p/privacy-policy.html              /privacy/                     301
+/p/disclaimer.html                  /disclaimer/                  301
+
+# --- Blogger system URLs ---
+/search                             /fluids/                      301
+/search/*                           /fluids/                      301
+/feeds/*                            /updates/                     301
+/sitemap.xml                        /sitemap-index.xml            301
+/sitemap-pages.xml                  /sitemap-index.xml            301
+/atom.xml                           /updates/                     301
+/rss.xml                            /updates/                     301

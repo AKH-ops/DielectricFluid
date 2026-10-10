@@ -1,0 +1,62 @@
+---
+// Hero illustration: a two-phase immersion tank. Server blades sit in the liquid, vapour bubbles rise off the chips
+// and condense on the coil above. Pure SVG + CSS animation; respects prefers-reduced-motion via global.css.
+const blades = [118, 186, 254, 322];
+const bubbles = Array.from({ length: 26 }, (_, i) => {
+  const b = blades[i % 4];
+  const x = b + 10 + ((i * 37) % 22);
+  return { x, y: 300 - ((i * 53) % 90), r: 1.6 + ((i * 7) % 4) * 0.9, d: 4.2 + ((i * 13) % 30) / 10, delay: -((i * 0.73) % 6) };
+});
+---
+<div class="tank-wrap">
+  <svg class="tank" viewBox="0 0 520 440" role="img" aria-labelledby="tank-t">
+    <title id="tank-t">Illustration of a two-phase immersion cooling tank: servers submerged in dielectric fluid, vapour rising to a condenser coil.</title>
+    <defs>
+      <linearGradient id="tk-fluid" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0" stop-color="var(--tank-top)" stop-opacity=".92" />
+        <stop offset="1" stop-color="var(--tank-bottom)" />
+      </linearGradient>
+      <linearGradient id="tk-glass" x1="0" y1="0" x2="1" y2="0">
+        <stop offset="0" stop-color="#ffffff" stop-opacity=".18" />
+        <stop offset=".5" stop-color="#ffffff" stop-opacity="0" />
+        <stop offset="1" stop-color="#ffffff" stop-opacity=".08" />
+      </linearGradient>
+      <clipPath id="tk-clip"><rect x="72" y="62" width="376" height="336" rx="20" /></clipPath>
+    </defs>
+    <rect x="60" y="50" width="400" height="360" rx="28" fill="var(--surface)" stroke="var(--line-strong)" stroke-width="1.5" />
+    <g clip-path="url(#tk-clip)">
+      <rect x="72" y="62" width="376" height="336" fill="var(--surface-2)" />
+      <path class="shimmer" d="M60 150 C 120 138, 170 162, 230 150 S 340 138, 400 150 S 470 160, 520 150 V 420 H 60 Z" fill="url(#tk-fluid)" />
+      {blades.map((x) => (
+        <g>
+          <rect x={x} y="178" width="44" height="206" rx="5" fill="#062631" stroke="#0e5566" stroke-width="1" />
+          <rect x={x + 8} y="200" width="28" height="22" rx="3" fill="#0b3d4a" stroke="#1fc4e2" stroke-opacity=".55" />
+          <rect x={x + 8} y="252" width="28" height="22" rx="3" fill="#0b3d4a" stroke="#1fc4e2" stroke-opacity=".55" />
+          <rect x={x + 8} y="304" width="28" height="22" rx="3" fill="#0b3d4a" stroke="#1fc4e2" stroke-opacity=".55" />
+          <circle cx={x + 12} cy="370" r="2.2" fill="#3fe0a8" />
+          <circle cx={x + 20} cy="370" r="2.2" fill="#1fc4e2" />
+        </g>
+      ))}
+      {bubbles.map((b) => <circle class="bubble" cx={b.x} cy={b.y} r={b.r} fill="#e8fbff" style={`--d:${b.d}s;--delay:${b.delay}s`} />)}
+      <path d="M96 96 h 328" stroke="var(--accent)" stroke-width="2" stroke-opacity=".35" />
+      <path d="M96 104 q 14 -18 28 0 t 28 0 t 28 0 t 28 0 t 28 0 t 28 0 t 28 0 t 28 0 t 28 0 t 28 0 t 28 0 t 28 0" fill="none" stroke="var(--accent)" stroke-width="3" stroke-linecap="round" />
+      <rect x="72" y="62" width="376" height="336" fill="url(#tk-glass)" />
+    </g>
+    <g font-family="IBM Plex Mono, monospace" font-size="10.5" fill="var(--muted)" letter-spacing=".08em">
+      <text x="470" y="108">COIL</text>
+      <text x="470" y="132">VAPOUR</text>
+      <text x="470" y="176">LIQUID</text>
+      <path d="M452 104 h14 M452 128 h14 M452 172 h14" stroke="var(--line-strong)" />
+    </g>
+  </svg>
+  <div class="tank-card a">
+    <div class="k">Dielectric strength</div>
+    <div class="v">&gt; 60 kV</div>
+    <div class="src">ElectroCool EC-110 · datasheet p.2</div>
+  </div>
+  <div class="tank-card b">
+    <div class="k">Boiling point</div>
+    <div class="v">48.9 °C</div>
+    <div class="src">Opteon 2P50 · info sheet p.1</div>
+  </div>
+</div>

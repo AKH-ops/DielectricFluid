@@ -1,0 +1,24 @@
+{
+  // Cloudflare Workers, static assets only — the same pattern as marathonstay.com.
+  // There is no `main`: the site is fully prerendered by Astro and every route is a file on disk.
+  "name": "dielectricfluid",
+  "compatibility_date": "2026-10-01",
+
+  // Never serve the site on dielectricfluid.<account>.workers.dev: that would publish a duplicate of every page on
+  // a second hostname. Pinned here so no deploy can silently turn it back on.
+  "workers_dev": false,
+
+  // Build inside the deploy, so the repo is self-contained: Workers Builds runs `npx wrangler deploy` straight after
+  // cloning (no install, no build) and the deploy fails without this. `npm ci` installs exactly the lockfile.
+  "build": {
+    "command": "npm ci && npm run build"
+  },
+
+  "assets": {
+    "directory": "./dist/",
+    // Astro builds with format "directory", so every canonical ends in a slash; serve and redirect to match.
+    "html_handling": "auto-trailing-slash",
+    // Serve our own dist/404.html.
+    "not_found_handling": "404-page"
+  }
+}

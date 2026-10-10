@@ -1,0 +1,29 @@
+---
+import { getCollection } from "astro:content";
+import Base from "../../layouts/Base.astro";
+import Crumbs from "../../components/Crumbs.astro";
+const guides = (await getCollection("guides", ({ data }) => data.kind === "guide")).sort((a, b) => a.data.order - b.data.order);
+---
+<Base title="Guides to dielectric fluids — the fundamentals, sourced" description="Plain-English guides to dielectric fluids: what they are, the fluid families, single- vs two-phase immersion, how to choose, and data-centre immersion. Every claim cited.">
+  <div class="page-head paper">
+    <div class="wrap">
+      <Crumbs items={[{ label: "Guides" }]} />
+      <h1>Guides</h1>
+      <p class="lede">The fundamentals, written from the same cited datasheet values as the register. No unsourced numbers.</p>
+    </div>
+  </div>
+  <section>
+    <div class="wrap grid grid-3">
+      {guides.map((g) => (
+        <a class="card" href={`/${g.data.path}/`}>
+          <span class="eyebrow">{g.data.eyebrow}</span>
+          <h3 style="margin-top:.6rem">{g.data.h1 ?? g.data.title}</h3>
+          <p>{g.data.description}</p>
+          <span class="go">Read →</span>
+        </a>
+      ))}
+      <a class="card" href="/novec-replacement/"><span class="eyebrow">Tool</span><h3 style="margin-top:.6rem">Novec &amp; Fluorinert replacement finder</h3><p>Pick the discontinued 3M grade and see the closest verified alternatives, with PFAS status.</p><span class="go">Open →</span></a>
+      <a class="card" href="/pfas/"><span class="eyebrow">Tracker</span><h3 style="margin-top:.6rem">PFAS and dielectric fluids</h3><p>What counts as PFAS, the status of every fluid in the register, and the dated timeline.</p><span class="go">Open →</span></a>
+    </div>
+  </section>
+</Base>

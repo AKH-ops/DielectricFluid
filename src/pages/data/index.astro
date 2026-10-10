@@ -1,0 +1,24 @@
+---
+import Base from "../../layouts/Base.astro";
+import Crumbs from "../../components/Crumbs.astro";
+import { counts } from "../../lib/fluids";
+const c = counts();
+---
+<Base title="Download the dielectric fluid register (CSV, JSON) — CC BY 4.0" description={`Download all ${c.products} records of the dielectric fluid register as CSV or JSON, with units, test conditions and a source URL and page for every value. Licensed CC BY 4.0.`}>
+  <div class="page-head paper">
+    <div class="wrap">
+      <Crumbs items={[{ href: "/fluids/", label: "Register" }, { label: "Data" }]} />
+      <h1>Download the register</h1>
+      <p class="lede">All {c.products} records and {c.values} values, with the unit, condition, source URL and page for each. Free to reuse under <a href="https://creativecommons.org/licenses/by/4.0/" rel="noopener" target="_blank">CC BY 4.0</a>: credit "DielectricFluid.com register" and link back.</p>
+    </div>
+  </div>
+  <section>
+    <div class="wrap grid grid-2">
+      <a class="card" href="/data/fluids.csv" download><span class="eyebrow">CSV</span><h3 style="margin-top:.6rem">fluids.csv</h3><p>One row per value: product, maker, property, value, qualifier, unit, condition, method, as-printed value, source URL, page, date checked.</p><span class="go">Download →</span></a>
+      <a class="card" href="/data/fluids.json" download><span class="eyebrow">JSON</span><h3 style="margin-top:.6rem">fluids.json</h3><p>The full records — product lines, grades, PFAS evidence and sources — exactly as the site uses them.</p><span class="go">Download →</span></a>
+    </div>
+    <div class="wrap prose" style="margin-top:2rem">
+      <p>Values are the makers' typical figures, recorded as printed. They are not specifications. Check the current datasheet and your batch's certificate of analysis before relying on any value. Corrections go on the <a href="/updates/">updates page</a>.</p>
+    </div>
+  </section>
+</Base>

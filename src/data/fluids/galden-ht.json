@@ -1,0 +1,420 @@
+{
+  "line": "galden-ht",
+  "name": "Galden® HT",
+  "maker": "syensqo",
+  "family": "pfpe",
+  "status": "active",
+  "applications": [
+    "semiconductor",
+    "vapour-phase",
+    "electronics-cooling",
+    "transformer"
+  ],
+  "source": "syensqo-galden-ht",
+  "page": 2,
+  "summary": "Perfluoropolyether (PFPE) heat-transfer fluids in nine boiling-point grades from 55 °C to 270 °C. Syensqo lists the same thermal conductivity (0.065 W/m·K) and dielectric strength (40 kV, 2.54 mm gap) for every grade and states there are no flash or fire points. Its listed uses include semiconductor, vapour-phase heating, recirculating chillers, and transformer and supercomputer cooling. All values at 25 °C unless stated.",
+  "pfas": {
+    "status": "pfas",
+    "basis": "structure",
+    "quote": "Galden® HT PFPE fluids do not contain hydrogen in their chemical structure",
+    "page": 2,
+    "note": "A perfluoropolyether is fully fluorinated, so it meets the OECD (2021) structural definition of PFAS."
+  },
+  "published_on": "2026-10-11",
+  "grades": [
+    {
+      "slug": "galden-ht55",
+      "name": "Galden HT55",
+      "props": {
+        "boiling_point": {
+          "v": 55
+        },
+        "pour_point": {
+          "v": -125,
+          "q": "<"
+        },
+        "density": {
+          "v": 1.65
+        },
+        "viscosity_kin": {
+          "v": 0.45
+        },
+        "vapor_pressure": {
+          "v": 30,
+          "pub": "225 torr"
+        },
+        "specific_heat": {
+          "v": 0.962,
+          "pub": "0.23 cal/g·°C"
+        },
+        "latent_heat": {
+          "v": 92,
+          "pub": "22 cal/g",
+          "at": "boiling point"
+        },
+        "thermal_conductivity": {
+          "v": 0.065
+        },
+        "dielectric_strength": {
+          "v": 40,
+          "method": "2.54 mm gap"
+        },
+        "dielectric_constant": {
+          "v": 1.86
+        },
+        "flash_point": {
+          "none": true
+        }
+      }
+    },
+    {
+      "slug": "galden-ht70",
+      "name": "Galden HT70",
+      "props": {
+        "boiling_point": {
+          "v": 70
+        },
+        "pour_point": {
+          "v": -110,
+          "q": "<"
+        },
+        "density": {
+          "v": 1.68
+        },
+        "viscosity_kin": {
+          "v": 0.5
+        },
+        "vapor_pressure": {
+          "v": 18.8,
+          "pub": "141 torr"
+        },
+        "specific_heat": {
+          "v": 0.962,
+          "pub": "0.23 cal/g·°C"
+        },
+        "latent_heat": {
+          "v": 71.1,
+          "pub": "17 cal/g",
+          "at": "boiling point"
+        },
+        "thermal_conductivity": {
+          "v": 0.065
+        },
+        "dielectric_strength": {
+          "v": 40,
+          "method": "2.54 mm gap"
+        },
+        "dielectric_constant": {
+          "v": 1.86
+        },
+        "flash_point": {
+          "none": true
+        }
+      }
+    },
+    {
+      "slug": "galden-ht80",
+      "name": "Galden HT80",
+      "props": {
+        "boiling_point": {
+          "v": 80
+        },
+        "pour_point": {
+          "v": -110
+        },
+        "density": {
+          "v": 1.69
+        },
+        "viscosity_kin": {
+          "v": 0.57
+        },
+        "vapor_pressure": {
+          "v": 14,
+          "pub": "105 torr"
+        },
+        "specific_heat": {
+          "v": 0.962,
+          "pub": "0.23 cal/g·°C"
+        },
+        "latent_heat": {
+          "v": 71.1,
+          "pub": "17 cal/g",
+          "at": "boiling point"
+        },
+        "thermal_conductivity": {
+          "v": 0.065
+        },
+        "dielectric_strength": {
+          "v": 40,
+          "method": "2.54 mm gap"
+        },
+        "dielectric_constant": {
+          "v": 1.89
+        },
+        "flash_point": {
+          "none": true
+        }
+      }
+    },
+    {
+      "slug": "galden-ht110",
+      "name": "Galden HT110",
+      "props": {
+        "boiling_point": {
+          "v": 110
+        },
+        "pour_point": {
+          "v": -100
+        },
+        "density": {
+          "v": 1.71
+        },
+        "viscosity_kin": {
+          "v": 0.77
+        },
+        "vapor_pressure": {
+          "v": 2.27,
+          "pub": "17 torr"
+        },
+        "specific_heat": {
+          "v": 0.962,
+          "pub": "0.23 cal/g·°C"
+        },
+        "latent_heat": {
+          "v": 71.1,
+          "pub": "17 cal/g",
+          "at": "boiling point"
+        },
+        "thermal_conductivity": {
+          "v": 0.065
+        },
+        "dielectric_strength": {
+          "v": 40,
+          "method": "2.54 mm gap"
+        },
+        "dielectric_constant": {
+          "v": 1.92
+        },
+        "flash_point": {
+          "none": true
+        }
+      }
+    },
+    {
+      "slug": "galden-ht135",
+      "name": "Galden HT135",
+      "props": {
+        "boiling_point": {
+          "v": 135
+        },
+        "pour_point": {
+          "v": -100
+        },
+        "density": {
+          "v": 1.72
+        },
+        "viscosity_kin": {
+          "v": 1
+        },
+        "vapor_pressure": {
+          "v": 0.773,
+          "pub": "5.8 torr"
+        },
+        "specific_heat": {
+          "v": 0.962,
+          "pub": "0.23 cal/g·°C"
+        },
+        "latent_heat": {
+          "v": 66.9,
+          "pub": "16 cal/g",
+          "at": "boiling point"
+        },
+        "thermal_conductivity": {
+          "v": 0.065
+        },
+        "dielectric_strength": {
+          "v": 40,
+          "method": "2.54 mm gap"
+        },
+        "dielectric_constant": {
+          "v": 1.92
+        },
+        "flash_point": {
+          "none": true
+        }
+      }
+    },
+    {
+      "slug": "galden-ht170",
+      "name": "Galden HT170",
+      "props": {
+        "boiling_point": {
+          "v": 170
+        },
+        "pour_point": {
+          "v": -97
+        },
+        "density": {
+          "v": 1.77
+        },
+        "viscosity_kin": {
+          "v": 1.8
+        },
+        "vapor_pressure": {
+          "v": 0.107,
+          "pub": "0.8 torr"
+        },
+        "specific_heat": {
+          "v": 0.962,
+          "pub": "0.23 cal/g·°C"
+        },
+        "latent_heat": {
+          "v": 66.9,
+          "pub": "16 cal/g",
+          "at": "boiling point"
+        },
+        "thermal_conductivity": {
+          "v": 0.065
+        },
+        "dielectric_strength": {
+          "v": 40,
+          "method": "2.54 mm gap"
+        },
+        "dielectric_constant": {
+          "v": 1.94
+        },
+        "flash_point": {
+          "none": true
+        }
+      }
+    },
+    {
+      "slug": "galden-ht200",
+      "name": "Galden HT200",
+      "props": {
+        "boiling_point": {
+          "v": 200
+        },
+        "pour_point": {
+          "v": -85
+        },
+        "density": {
+          "v": 1.79
+        },
+        "viscosity_kin": {
+          "v": 2.4
+        },
+        "vapor_pressure": {
+          "v": 0.0267,
+          "pub": "0.2 torr"
+        },
+        "specific_heat": {
+          "v": 0.962,
+          "pub": "0.23 cal/g·°C"
+        },
+        "latent_heat": {
+          "v": 62.8,
+          "pub": "15 cal/g",
+          "at": "boiling point"
+        },
+        "thermal_conductivity": {
+          "v": 0.065
+        },
+        "dielectric_strength": {
+          "v": 40,
+          "method": "2.54 mm gap"
+        },
+        "dielectric_constant": {
+          "v": 1.94
+        },
+        "flash_point": {
+          "none": true
+        }
+      }
+    },
+    {
+      "slug": "galden-ht230",
+      "name": "Galden HT230",
+      "props": {
+        "boiling_point": {
+          "v": 230
+        },
+        "pour_point": {
+          "v": -77
+        },
+        "density": {
+          "v": 1.82
+        },
+        "viscosity_kin": {
+          "v": 4.4
+        },
+        "vapor_pressure": {
+          "v": 0.004,
+          "pub": "0.03 torr"
+        },
+        "specific_heat": {
+          "v": 0.962,
+          "pub": "0.23 cal/g·°C"
+        },
+        "latent_heat": {
+          "v": 62.8,
+          "pub": "15 cal/g",
+          "at": "boiling point"
+        },
+        "thermal_conductivity": {
+          "v": 0.065
+        },
+        "dielectric_strength": {
+          "v": 40,
+          "method": "2.54 mm gap"
+        },
+        "dielectric_constant": {
+          "v": 1.94
+        },
+        "flash_point": {
+          "none": true
+        }
+      }
+    },
+    {
+      "slug": "galden-ht270",
+      "name": "Galden HT270",
+      "props": {
+        "boiling_point": {
+          "v": 270
+        },
+        "pour_point": {
+          "v": -66
+        },
+        "density": {
+          "v": 1.85
+        },
+        "viscosity_kin": {
+          "v": 14
+        },
+        "specific_heat": {
+          "v": 0.962,
+          "pub": "0.23 cal/g·°C"
+        },
+        "latent_heat": {
+          "v": 62.8,
+          "pub": "15 cal/g",
+          "at": "boiling point"
+        },
+        "thermal_conductivity": {
+          "v": 0.065
+        },
+        "dielectric_strength": {
+          "v": 40,
+          "method": "2.54 mm gap"
+        },
+        "dielectric_constant": {
+          "v": 1.94
+        },
+        "flash_point": {
+          "none": true
+        }
+      }
+    }
+  ]
+}

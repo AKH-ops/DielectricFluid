@@ -1,0 +1,62 @@
+{
+  "line": "naturecool-2000",
+  "name": "NatureCool™ 2000",
+  "maker": "cargill",
+  "family": "natural-ester",
+  "phase": "single",
+  "status": "active",
+  "applications": [
+    "electronics-cooling"
+  ],
+  "source": "cargill-naturecool-2000-tds",
+  "page": 2,
+  "summary": "A plant-based single-phase immersion coolant that Cargill says is derived from 95% vegetable oil, with a 325 °C flash point and a 355 °C fire point (ASTM D92, COC). Its density (0.92 g/mL at 20 °C) is higher than the synthetic hydrocarbons in this register (0.81–0.84 g/cm³), which matters for tank weight and pump sizing.",
+  "pfas": {
+    "status": "nonfluorinated",
+    "basis": "composition",
+    "quote": "Derived from 95% vegetable oil, a renewable resource",
+    "page": 1,
+    "note": "A vegetable-oil base is not fluorinated. The datasheet makes no PFAS statement of its own."
+  },
+  "published_on": "2026-10-11",
+  "grades": [
+    {
+      "slug": "naturecool-2000",
+      "name": "NatureCool 2000",
+      "props": {
+        "flash_point": {
+          "v": 325,
+          "method": "COC, ASTM D92"
+        },
+        "fire_point": {
+          "v": 355,
+          "method": "COC, ASTM D92"
+        },
+        "density": {
+          "v": 0.9206,
+          "at": "20 °C",
+          "pub": "0.9206 g/mL"
+        },
+        "viscosity_kin": {
+          "v": 31,
+          "at": "40 °C",
+          "method": "ASTM D445",
+          "pub": "31 mm²/s"
+        },
+        "thermal_conductivity": {
+          "v": 0.1644,
+          "at": "20 °C"
+        },
+        "specific_heat": {
+          "v": 2.3076,
+          "at": "60 °C"
+        },
+        "dielectric_strength": {
+          "v": 35,
+          "q": ">",
+          "method": "2.5 mm gap"
+        }
+      }
+    }
+  ]
+}

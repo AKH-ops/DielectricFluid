@@ -1,0 +1,48 @@
+---
+import Logo from "./Logo.astro";
+import { SITE } from "../lib/site";
+const year = new Date(SITE.launched).getFullYear();
+---
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="cols">
+      <div class="about">
+        <a class="brand" href="/"><Logo /><span class="word">Dielectric<b>Fluid</b></span></a>
+        <p style="margin-top:.9rem;max-width:42ch">An independent, vendor-neutral register of dielectric fluids. Every value links to the page of the maker's document it came from.</p>
+        <p class="disclosure" style="margin-top:1rem"><b>How we are paid.</b> When the desk introduces you to a supplier we may earn a referral fee from that supplier. Fees never change what the register shows or how it ranks. <a href="/editorial-policy/">Editorial policy</a></p>
+      </div>
+      <div>
+        <h2>Register</h2>
+        <ul>
+          <li><a href="/fluids/">All fluids</a></li>
+          <li><a href="/makers/">Makers</a></li>
+          <li><a href="/data/">Download the data</a></li>
+          <li><a href="/updates/">Updates &amp; corrections</a></li>
+        </ul>
+      </div>
+      <div>
+        <h2>Tools &amp; guides</h2>
+        <ul>
+          <li><a href="/novec-replacement/">Novec replacement finder</a></li>
+          <li><a href="/pfas/">PFAS tracker</a></li>
+          <li><a href="/choose/">How to choose a fluid</a></li>
+          <li><a href="/guides/">All guides</a></li>
+        </ul>
+      </div>
+      <div>
+        <h2>About</h2>
+        <ul>
+          <li><a href="/about/">About</a></li>
+          <li><a href="/editorial-policy/">Editorial policy</a></li>
+          <li><a href="/desk/">Sourcing desk</a></li>
+          <li><a href="/privacy/">Privacy</a></li>
+          <li><a href="/disclaimer/">Disclaimer</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="legal">
+      <span>© {year} DielectricFluid.com · Independent; not affiliated with any fluid maker.</span>
+      <span>Product names are trademarks of their owners and are used only to identify products.</span>
+    </div>
+  </div>
+</footer>
