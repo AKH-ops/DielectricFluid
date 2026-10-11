@@ -18,7 +18,6 @@ updated: 2026-10-11
 ## 2. Who processes it for us
 
 - **Cloudflare** hosts and serves the site and runs the desk form. Your answers are stored in a database in our own Cloudflare account and emailed to the desk. We store the country Cloudflare reports for the request, not your IP address. No outside form service handles them.
-- **Cloudflare Turnstile** checks that the form is sent by a person rather than a bot. It runs in your browser when you open the desk page and processes technical data under [Cloudflare's Turnstile privacy addendum](https://www.cloudflare.com/turnstile-privacy-policy/).
 - **Our email provider** receives and stores the messages you send us and the desk's copy of each form request.
 
 ## 3. How we use it

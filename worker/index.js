@@ -1,11 +1,12 @@
 // The desk form handler for dielectricfluid.com. The site itself stays static: wrangler.jsonc sends only /api/* here
 // (assets.run_worker_first), so every page is served straight from ./dist without running this code.
 //
-// POST /api/desk: check origin, size, honeypot and Turnstile; store the request in D1 (binding DB); email it to the
-// desk through this zone's Cloudflare Email Routing (binding DESK_MAIL). Nothing leaves Cloudflare except the email
-// itself, which goes only to the verified address in the NOTIFY_TO secret.
+// POST /api/desk: check origin, size, honeypot, time on page and (once switched on) Turnstile; store the request in
+// D1 (binding DB); email it to the desk through this zone's Cloudflare Email Routing (binding DESK_MAIL). Nothing
+// leaves Cloudflare except the email itself, which goes only to the verified address in the NOTIFY_TO secret.
 //
-// Secrets (dashboard only, never in the repo): TURNSTILE_SECRET, NOTIFY_TO. Vars: MAIL_FROM, ALLOWED_ORIGINS.
+// Secrets (dashboard only, never in the repo, which is public): NOTIFY_TO; TURNSTILE_SECRET (optional).
+// Vars: MAIL_FROM, ALLOWED_ORIGINS.
 import { EmailMessage } from "cloudflare:email";
 
 // Field → max length. Anything longer is cut, never rejected: a buyer should not lose a long message to a limit.
@@ -86,17 +87,22 @@ async function desk(request, env, ctx) {
   // Honeypot: a field people never see. Bots fill it; answer as if it worked and store nothing.
   if (String(form.get("website") || "").trim()) return reply(request, 200, { ok: true });
 
-  // Turnstile. Fail closed: no secret configured means no request is accepted.
-  if (!env.TURNSTILE_SECRET) throw new Error("TURNSTILE_SECRET is not set");
-  const check = await fetch("https://challenges.cloudflare.com/turnstile/v0/siteverify", {
-    method: "POST",
-    body: new URLSearchParams({
-      secret: env.TURNSTILE_SECRET,
-      response: String(form.get("cf-turnstile-response") || ""),
-      remoteip: request.headers.get("cf-connecting-ip") || "",
-    }),
-  }).then((r) => r.json()).catch(() => ({ success: false }));
-  if (!check.success) return reply(request, 400, { ok: false, error: "check" });
+  // Time on the page, measured by the page's own script at submit. Bots that post without running it send nothing,
+  // and no person fills this form in under two seconds. Refused with a message, so a person can simply resend.
+  if (!(Number(form.get("elapsed")) >= 2000)) return reply(request, 400, { ok: false, error: "check" });
+
+  // Turnstile, only once it is switched on: TURNSTILE_SECRET in the dashboard plus turnstileSiteKey in src/lib/site.ts.
+  if (env.TURNSTILE_SECRET) {
+    const check = await fetch("https://challenges.cloudflare.com/turnstile/v0/siteverify", {
+      method: "POST",
+      body: new URLSearchParams({
+        secret: env.TURNSTILE_SECRET,
+        response: String(form.get("cf-turnstile-response") || ""),
+        remoteip: request.headers.get("cf-connecting-ip") || "",
+      }),
+    }).then((r) => r.json()).catch(() => ({ success: false }));
+    if (!check.success) return reply(request, 400, { ok: false, error: "check" });
+  }
 
   const v = {};
   for (const [k, max] of Object.entries(LIMITS)) v[k] = clean(form.get(k), max, MULTILINE.has(k));

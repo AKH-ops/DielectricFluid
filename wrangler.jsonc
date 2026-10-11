@@ -31,7 +31,7 @@
     {
       "binding": "DB",
       "database_name": "dielectricfluid-desk",
-      "database_id": "REPLACE_WITH_D1_DATABASE_ID",
+      "database_id": "babc214f-c3c7-4831-a3f6-520c74250cf7",
       "migrations_dir": "migrations"
     }
   ],
@@ -40,7 +40,7 @@
   // verified destination addresses; the address itself is the secret NOTIFY_TO, so it is not in the repo.
   "send_email": [{ "name": "DESK_MAIL" }],
 
-  // Secrets, set in the dashboard and never in this file: TURNSTILE_SECRET, NOTIFY_TO.
+  // Secrets, set in the dashboard and never in this file (the repo is public): NOTIFY_TO; TURNSTILE_SECRET (optional).
   "vars": {
     "MAIL_FROM": "desk@dielectricfluid.com",
     "ALLOWED_ORIGINS": "https://dielectricfluid.com"
