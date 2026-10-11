@@ -7,8 +7,9 @@ export const SITE = {
     "An independent register of immersion-cooling, transformer and Novec-replacement fluids. Every value is cited to the maker's datasheet, alongside a Novec/Fluorinert replacement finder, a PFAS tracker and a sourcing desk.",
   author: "Ahmad Hassan, PhD",
   email: "hello@dielectricfluid.com",
-  // Tally form that already served the Blogger contact page; delivery is configured in the CEO's Tally account.
-  tallyForm: "ZjWeKB",
+  // Cloudflare Turnstile site key for the desk form (public by design). Optional: empty = no widget; set it together
+  // with the TURNSTILE_SECRET Worker secret. PUBLIC_TURNSTILE_SITE_KEY overrides it (local tests use the test key).
+  turnstileSiteKey: "",
   launched: "2026-10-11",
 };
 
