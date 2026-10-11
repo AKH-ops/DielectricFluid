@@ -359,4 +359,25 @@ dialog.compare .body { padding: 1rem 1.25rem 1.5rem; overflow-x: auto; }
 .band .btn-primary { background: var(--accent-glow); color: #04222b; position: relative; z-index: 1; }
 @media (max-width: 720px) { .band { grid-template-columns: 1fr; } }
 
-.embed-frame { width: 100%; border: 0; min-height: 520px; }
+/* ---------- desk form (worker/index.js handles /api/desk) ----------------- */
+/* Author display rules (.desk-form is a grid) beat the browser's own [hidden]; restore it. */
+[hidden] { display: none !important; }
+.desk-form { padding: clamp(1rem, .6rem + 1.4vw, 1.75rem); display: grid; gap: 1.1rem; }
+.form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: .95rem 1rem; }
+.form-grid .span-2 { grid-column: 1 / -1; }
+.field { display: grid; gap: .35rem; font-size: var(--fs-sm); font-weight: 600; color: var(--ink-2); }
+.field i, .choice i { color: var(--pfas); font-style: normal; }
+.field input, .field select, .field textarea { font: inherit; font-size: .98rem; font-weight: 400; color: var(--ink); background: var(--surface); border: 1px solid var(--line-strong); border-radius: 10px; padding: .7rem .8rem; width: 100%; min-width: 0; }
+.field textarea { resize: vertical; min-height: 7.5rem; }
+.field input:focus, .field select:focus, .field textarea:focus { outline: 2px solid var(--accent); outline-offset: 1px; border-color: var(--accent); }
+.field [aria-invalid="true"] { border-color: var(--pfas); background: var(--pfas-soft); }
+.choice { border: 1px solid var(--line); border-radius: 10px; padding: .8rem 1rem; display: grid; gap: .55rem; margin: 0; }
+.choice legend { font-size: var(--fs-sm); font-weight: 600; color: var(--ink-2); padding: 0 .3rem; }
+.choice label, .check { display: flex; gap: .6rem; align-items: flex-start; font-size: .95rem; color: var(--ink); }
+.choice input, .check input { margin-top: .25rem; accent-color: var(--accent); width: 1.05rem; height: 1.05rem; flex: none; }
+.hp { position: absolute; left: -10000px; width: 1px; height: 1px; overflow: hidden; }
+.form-foot { display: flex; flex-wrap: wrap; gap: .9rem 1.2rem; align-items: center; }
+.form-status { margin: 0; font-size: var(--fs-sm); color: var(--ink-2); }
+.desk-sent { padding: clamp(1.2rem, .8rem + 1.4vw, 2rem); border-left: 4px solid var(--free); }
+.desk-sent h2 { margin-top: 0; }
+@media (max-width: 640px) { .form-grid { grid-template-columns: 1fr; } }
