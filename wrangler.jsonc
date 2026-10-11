@@ -1,7 +1,9 @@
 {
-  // Cloudflare Workers, static assets only — the same pattern as marathonstay.com.
-  // There is no `main`: the site is fully prerendered by Astro and every route is a file on disk.
+  // Cloudflare Workers with static assets — the marathonstay.com pattern, plus one small Worker for the desk form.
+  // Every page is prerendered by Astro and served straight from ./dist. Only /api/* runs worker/index.js
+  // (assets.run_worker_first), so pages never invoke the Worker.
   "name": "dielectricfluid",
+  "main": "./worker/index.js",
   "compatibility_date": "2026-10-01",
 
   // Never serve the site on dielectricfluid.<account>.workers.dev: that would publish a duplicate of every page on
@@ -16,9 +18,33 @@
 
   "assets": {
     "directory": "./dist/",
+    "binding": "ASSETS",
+    "run_worker_first": ["/api/*"],
     // Astro builds with format "directory", so every canonical ends in a slash; serve and redirect to match.
     "html_handling": "auto-trailing-slash",
     // Serve our own dist/404.html.
     "not_found_handling": "404-page"
-  }
+  },
+
+  // Desk requests are stored here. The database is created in the Cloudflare dashboard; its id is not a secret.
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "dielectricfluid-desk",
+      "database_id": "babc214f-c3c7-4831-a3f6-520c74250cf7",
+      "migrations_dir": "migrations"
+    }
+  ],
+
+  // Notifications go out through this zone's Cloudflare Email Routing, from MAIL_FROM. Cloudflare delivers only to
+  // verified destination addresses; the address itself is the secret NOTIFY_TO, so it is not in the repo.
+  "send_email": [{ "name": "DESK_MAIL" }],
+
+  // Secrets, set in the dashboard and never in this file (the repo is public): NOTIFY_TO; TURNSTILE_SECRET (optional).
+  "vars": {
+    "MAIL_FROM": "desk@dielectricfluid.com",
+    "ALLOWED_ORIGINS": "https://dielectricfluid.com"
+  },
+
+  "observability": { "enabled": true }
 }

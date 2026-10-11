@@ -72,5 +72,8 @@ if (fs.existsSync(gdir)) for (const f of fs.readdirSync(gdir).filter((x) => x.en
   for (const m of t.matchAll(/\{\{src:([a-z0-9-]+)/g)) if (!sources[m[1]]) err(f, `unknown source ${m[1]}`);
 }
 
+// The desk form must not ship half-configured: a placeholder D1 id fails the deploy after the pages are built.
+if (/REPLACE_WITH/.test(fs.readFileSync(path.join(root, "wrangler.jsonc"), "utf8"))) err("wrangler.jsonc", "placeholder left in (D1 database_id?)");
+
 if (errors.length) { console.error("audit FAILED\n - " + errors.join("\n - ")); process.exit(1); }
 console.log(`audit ok: ${slugs.size} grades, ${Object.keys(sources).length} sources, pages per day ${JSON.stringify(perDay)}`);
